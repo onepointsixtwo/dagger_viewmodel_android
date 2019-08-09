@@ -1,7 +1,7 @@
 package com.onepointsixtwo.dagger_viewmodel_android;
 
-import android.arch.lifecycle.ViewModel;
-import android.arch.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
 
 import java.util.Map;
 
