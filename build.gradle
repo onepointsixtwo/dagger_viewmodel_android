@@ -6,7 +6,8 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.5.0'
-        classpath 'digital.wup:android-maven-publish:3.0.0'
+        classpath "io.codearte.gradle.nexus:gradle-nexus-staging-plugin:0.5.3"
+        classpath 'com.bmuschko:gradle-nexus-plugin:2.3.1'
     }
 }
 
@@ -19,7 +20,8 @@ allprojects {
 }
 
 apply plugin: 'com.android.library'
-apply plugin: 'digital.wup.android-maven-publish'
+apply plugin: 'io.codearte.nexus-staging'
+apply plugin: 'com.bmuschko.nexus'
 
 android {
     compileSdkVersion 28
@@ -53,3 +55,45 @@ dependencies {
 // project information
 group = 'com.onepointsixtwo'
 version = '1.0.1'
+
+project.ext {
+    nexusUsername = ossrhUser
+    nexusPassword = ossrhPassword
+}
+
+modifyPom {
+    project {
+        name 'dagger_viewmodel_android'
+        description 'The Android part of the dagger_viewmodel lib'
+        url 'https://github.com/onepointsixtwo/dagger_viewmodel_android'
+        groupId = 'com.onepointsixtwo'
+
+        scm {
+            url 'https://github.com/onepointsixtwo/dagger_viewmodel_android'
+            connection 'scm:github.com/onepointsixtwo/dagger_viewmodel_android'
+            developerConnection 'scm:git:git@github.com:onepointsixtwo/dagger_viewmodel_android.git'
+        }
+
+        licenses {
+            license {
+                name 'The MIT License (MIT)'
+                url 'http://opensource.org/licenses/MIT'
+                distribution 'repo'
+            }
+        }
+
+        developers {
+            developer {
+                id = 'onepointsixtwo'
+                name = 'John Kartupelis'
+                email = 'john.kartupelis@gmail.com'
+            }
+        }
+    }
+}
+
+extraArchive {
+    sources = true
+    tests = false
+    javadoc = true
+}

@@ -11,11 +11,8 @@ The pre-requisites for releasing this are as follows:
 
 ## Upload
 
-Simply run the command <insert command!>
+Simply run the command `./gradlew uploadArchives` to upload the aar to maven central (nexus). Use
+`./gradlew closeAndPromoteRepository` to actually release it.
 
-
-## Release
-
-- Login to Sonatype and then go to "Staging Repositories"
-- Find the one matching 'onepointsixtwo' and check the version etc. is what you're expecting
-- Click close to deploy to maven central
+You can login to Sonatype and look at 'Staging Repositories' to see that it has uploaded between
+these steps.
